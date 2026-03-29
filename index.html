@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Feeling</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(180deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
+}
+
+h1{
+font-size:26px;
+margin-top:40px;
+padding:0 15px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 8px cyan}
+to{text-shadow:0 0 18px magenta}
+}
+
+.container{
+margin-top:30px;
+padding:0 15px;
+}
+
+button{
+width:100%;
+max-width:350px;
+padding:16px;
+margin:10px auto;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#00c3ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+video{
+width:100%;
+max-width:400px;
+margin-top:20px;
+border-radius:12px;
+}
+
+#msg{
+margin-top:15px;
+color:#ffb3b3;
+font-size:15px;
+}
+
+footer{
+margin-top:40px;
+font-size:12px;
+opacity:0.7;
+padding-bottom:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>my felling when ryu didn't repply me</h1>
+
+<div class="container">
+
+<button onclick="playVideo('song1.mp4')">Song1</button>
+<button onclick="playVideo('song2.mp4')">Song2</button>
+<button onclick="playVideo('song3.mp4')">Song3</button>
+<button onclick="playVideo('song4.mp4')">Song4</button>
+<button onclick="playVideo('song5.mp4')">Song5</button>
+
+<video id="player" controls playsinline></video>
+
+<div id="msg"></div>
+
+</div>
+
+<footer>made by ashmit on 3/11/26</footer>
+
+<script>
+
+function playVideo(file){
+
+let player = document.getElementById("player");
+let message = document.getElementById("msg");
+
+message.innerText = "";
+
+/* check if file exists first */
+fetch(file)
+.then(response => {
+    if(!response.ok){
+        message.innerText = "song feeling was not added yet";
+        return;
+    }
+
+    player.src = file;
+    player.load();
+    player.play();
+})
+.catch(()=>{
+    message.innerText = "song feeling was not added yet";
+});
+
+}
+
+</script>
+
+</body>
+</html>
